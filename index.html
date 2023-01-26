@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,10 +10,11 @@
         integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <title>hai</title>
 </head>
+
 <body>
     <div class="container">
         <section id="icon">
@@ -22,9 +24,9 @@
                 <button><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
             <div class="icons">
-                <i class="fa-solid fa-bell"></i>
-                <i class="fa-solid fa-cart-shopping"></i>
-                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-bell" id="bell"></i>
+                <i class="fa-solid fa-cart-shopping" id="order"></i>
+                <i class="fa-solid fa-user" id="user"></i>
             </div>
         </section>
         <div class="items">
@@ -39,99 +41,137 @@
                 <li><a href="#">Audio</a></li>
             </ul>
         </div>
-        <main class="box-container">
-            <div class="box">
-                <div class="image">
-                    <img src="assets/img/samsung Galaxy a14.jpg" alt="1">
-                    <p>Samsung Galaxy A14 5G (Light Green, 4GB, 64GB Storage)  <br>
-                    <h6>Deal of the day🎁</h6>Price:₹16,499 <br>(31% off)
-                    <br><br></p><span>BUY NOW</span>
+        <div class="mmm">
+            <main class="box-container">
+                <div class="box">
+                    <div class="image">
+                        <img src="assets/img/samsung Galaxy a14.jpg" alt="1">
+                        <p>Samsung Galaxy A14 5G (Light Green, 4GB, 64GB Storage) <br>
+                        <h6>Deal of the day🎁</h6>Price:₹16,499 <br>(31% off)
+                        <br><br></p><span>BUY NOW</span>
+                    </div>
                 </div>
-            </div>
-            <div class="box">
-                <div class="image">
-                    <img src="assets/img/vivo.jpg" alt="2">
-                    <p>Vivo Y02 (Orchid Blue, 3GB RAM, 32GB Storage) <br>
-                    <h6>Deal of the day🎁</h6> Price:₹10,000 <br>(23% off)
-                    <br><br></p><span>BUY NOW</span>
+                <div class="box">
+                    <div class="image">
+                        <img src="assets/img/vivo.jpg" alt="2">
+                        <p>Vivo Y02 (Orchid Blue, 3GB RAM, 32GB Storage) <br>
+                        <h6>Deal of the day🎁</h6> Price:₹10,000 <br>(23% off)
+                        <br><br></p><span>BUY NOW</span>
+                    </div>
                 </div>
-            </div>
-            <div class="box">
-                <div class="image">
-                    <img src="assets/img/Apple.jpg" alt="3">
-                    <p>Apple iPhone 14 Pro Max 128GB Deep Purple <br>
-                    <h6>Deal of the day🎁</h6> Price:₹1,32,999<br>(11% off)
-                    <br><br></p><span>BUY NOW</span>
+                <div class="box">
+                    <div class="image">
+                        <img src="assets/img/Apple.jpg" alt="3">
+                        <p>Apple iPhone 14 Pro Max 128GB Deep Purple <br>
+                        <h6>Deal of the day🎁</h6> Price:₹1,32,999<br>(11% off)
+                        <br><br></p><span>BUY NOW</span>
+                    </div>
                 </div>
-            </div>
-            <div class="box">
-                <div class="image">
-                    <img src="assets/img/redmi.jpg" alt="4">
-                    <p>Redmi Note 11 (Horizon Blue, 6GB RAM, 128GB Storage) <br>
-                    <h6>Deal of the day🎁</h6> Price:₹14,499 <br>(282% off)
-                    <br><br></p><span>BUY NOW</span>
+                <div class="box">
+                    <div class="image">
+                        <img src="assets/img/redmi.jpg" alt="4">
+                        <p>Redmi Note 11 (Horizon Blue, 6GB RAM, 128GB Storage) <br>
+                        <h6>Deal of the day🎁</h6> Price:₹14,499 <br>(282% off)
+                        <br><br></p><span>BUY NOW</span>
+                    </div>
                 </div>
-            </div>
-            <div class="box">
-                <div class="image">
-                    <img src="assets/img/oppo.jpg" alt="5">
-                    <p>OPPO A74 5G (Fantastic Purple,6GB RAM,128GB Storage) <br>
-                    <h6>Deal of the day🎁</h6> Price:₹15,490 <br>(12% off)
-                    <br><br></p><span>BUY NOW</span>
+                <div class="box">
+                    <div class="image">
+                        <img src="assets/img/oppo.jpg" alt="5">
+                        <p>OPPO A74 5G (Fantastic Purple,6GB RAM,128GB Storage) <br>
+                        <h6>Deal of the day🎁</h6> Price:₹15,490 <br>(12% off)
+                        <br><br></p><span>BUY NOW</span>
+                    </div>
                 </div>
-            </div>
-            <div class="box">
-                <div class="image">
-                    <img src="assets/img/realme.jpg" alt="6">
-                    <p>realme Narzo 50 Pro 5G (Hyper Blue 6GB RAM+128GB Storage)<br>
-                    <h6>Deal of the day🎁</h6> Price:₹21,999 <br>(15% off)
-                    <br><br></p><span>BUY NOW</span>
+                <div class="box">
+                    <div class="image">
+                        <img src="assets/img/realme.jpg" alt="6">
+                        <p>realme Narzo 50 Pro 5G (Hyper Blue 6GB RAM+128GB Storage)<br>
+                        <h6>Deal of the day🎁</h6> Price:₹21,999 <br>(15% off)
+                        <br><br></p><span>BUY NOW</span>
+                    </div>
                 </div>
-            </div>
-            <div class="box">
-                <div class="image">
-                    <img src="assets/img/google.jpg" alt="7">
-                    <p>Google Pixel 6 (Black, 8GB RAM, 128GB Storage) <br>
-                    <h6>Deal of the day🎁</h6> Price:₹39,850 <br>(-50% off)
-                    <br><br></p><span>BUY NOW</span>
+                <div class="box">
+                    <div class="image">
+                        <img src="assets/img/google.jpg" alt="7">
+                        <p>Google Pixel 6 (Black, 8GB RAM, 128GB Storage) <br>
+                        <h6>Deal of the day🎁</h6> Price:₹39,850 <br>(-50% off)
+                        <br><br></p><span>BUY NOW</span>
+                    </div>
                 </div>
-            </div>
-            <div class="box">
-                <div class="image">
-                    <img src="assets/img/sony.jpg" alt="8">
-                    <p>Sony Xperia 1 III 5G(12GB RAM, 256GB Storage)<br>
-                    <h6>Deal of the day🎁</h6> Price:₹89,900 <br>(21% off)
-                    <br><br></p><span>BUY NOW</span>
+                <div class="box">
+                    <div class="image">
+                        <img src="assets/img/sony.jpg" alt="8">
+                        <p>Sony Xperia 1 III 5G(12GB RAM, 256GB Storage)<br>
+                        <h6>Deal of the day🎁</h6> Price:₹89,900 <br>(21% off)
+                        <br><br></p><span>BUY NOW</span>
+                    </div>
                 </div>
-            </div>
-            <div class="box">
-                <div class="image">
-                    <img src="assets/img/xiaomi.jpg" alt="9">
-                    <p>Xiaomi 11T Pro 5G(12GB RAM, 256GB Storage)<br>
-                    <h6>Deal of the day🎁</h6> Price:₹10,000 <br>(25% off)
-                    <br><br></p><span>BUY NOW</span>
+                <div class="box">
+                    <div class="image">
+                        <img src="assets/img/xiaomi.jpg" alt="9">
+                        <p>Xiaomi 11T Pro 5G(12GB RAM, 256GB Storage)<br>
+                        <h6>Deal of the day🎁</h6> Price:₹10,000 <br>(25% off)
+                        <br><br></p><span>BUY NOW</span>
+                    </div>
                 </div>
-            </div>
-            <div class="box">
-                <div class="image">
-                    <img src="assets/img/infinix.jpg" alt="10">
-                    <p>Infinix Hot 12 Pro (6GB RAM 64GB Storage) <br>
-                    <h6>Deal of the day🎁</h6> Price:₹30,000 <br>(-31% off)
-                    <br><br></p><span>BUY NOW</span>
+                <div class="box">
+                    <div class="image">
+                        <img src="assets/img/infinix.jpg" alt="10">
+                        <p>Infinix Hot 12 Pro (6GB RAM 64GB Storage) <br>
+                        <h6>Deal of the day🎁</h6> Price:₹30,000 <br>(-31% off)
+                        <br><br></p><span>BUY NOW</span>
+                    </div>
                 </div>
-            </div>
-            <div class="box">
-                <div class="image">
-                    <img src="assets/img/oneplus.jpg" alt="11">
-                    <p>OnePlus Nord CE 2 Lite 5G (Blue Tide, 6GB RAM, 128GB Storage) <br>
-                    <h6>Deal of the day🎁</h6> Price:₹19,000 <br>(-5% off)
-                    <br><br></p><span>BUY NOW</span>
+                <div class="box">
+                    <div class="image">
+                        <img src="assets/img/oneplus.jpg" alt="11">
+                        <p>OnePlus Nord CE 2 Lite 5G (Blue Tide, 6GB RAM, 128GB Storage) <br>
+                        <h6>Deal of the day🎁</h6> Price:₹19,000 <br>(-5% off)
+                        <br><br></p><span>BUY NOW</span>
+                    </div>
                 </div>
-            </div>
-        </main>
-        <div id="load-more">load more</div>
-        <br><br>
+            </main>
+            <div id="load-more">load more</div><br><br>
+        </div>
     </div>
-    <script src="assets/js/shopping-website.js"></script>  
+
+    <div id="login">
+        <div class="login">
+            <p class="sign-content">Sign in to Account</p>
+        </div>
+        <div class="wrapper">
+            <h2 class="login-page">LOGIN</h2>
+            <i class="fa-solid fa-user-pen"></i>
+            <form action="#">
+                <div class="field email">
+                    <div class="input-area">
+                        <input type="text" placeholder="Email Address">
+                        <i class="icon fas fa-envelope"></i>
+                        <i class="error error-icon fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="error error-txt">Email can't be blank</div>
+                </div>
+                <div class="field password">
+                    <div class="input-area">
+                        <input type="password" placeholder="Password">
+                        <i class="icon fas fa-lock"></i>
+                        <i class="error error-icon fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="error error-txt">Password can't be blank</div>
+                </div>
+                <div class="pass-txt"><a href="#">Forgot password?</a></div>
+                <input type="submit" value="Login">
+            </form>
+            <div class="sign-txt">Not yet member? <a href="#">Signup now</a></div>
+        </div>
+        <br>
+        </form>
+    </div>
+    <p class="ovin"><span>©</span>Ovin Mano-All Rights Reserved</p>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/user-login.js"></script>
 </body>
+
 </html>
