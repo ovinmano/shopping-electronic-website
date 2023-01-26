@@ -167,7 +167,7 @@ main .box .image  span{
 @media (max-width:580px){
     .nav-links{
         position: absolute;
-        top: 26vh;
+        top: 24vh;
         left: 0;
         flex-direction: column;
         width: 100%;
@@ -204,6 +204,11 @@ main .box .image  span{
 @media (max-width:400px){
     section{
         width:400px;
+    }
+     .nav-links{
+        top: 24vh;
+        width: 400px;
+        transition:  0.6s;
     }
 }
 
