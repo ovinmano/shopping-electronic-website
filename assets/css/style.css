@@ -201,3 +201,9 @@ main .box .image  span{
     
     }
 }
+@media (max-width:400px){
+    section{
+        width:400px;
+    }
+}
+
