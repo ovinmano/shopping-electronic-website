@@ -1,0 +1,337 @@
+==== index.html =====
+
+ 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+  <!-- js bundle -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
+
+  <!-- font Awasome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+==== Admin Screen =====
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+
+function AdminUserscreen() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/users/getAllUsers");
+      setUsers(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async (userId) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/users/deleteUser/${userId}`);
+      setUsers(users.filter((user) => user._id !== userId));
+      console.log("User deleted successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <div className="table-container">
+      <h3>Users</h3>
+      <div>
+        {users.map((user) => (
+          <div key={user._id}>
+            <Link to={`/update/${user._id}`}>
+              <h5>Email: {user.email}</h5>
+            </Link>
+            <h5>Is Admin: {user.isAdmin ? "YES" : "NO"}</h5>
+            <button onClick={() => handleDelete(user._id)}>Delete</button>
+          </div>
+        ))}
+      </div>
+      <br />
+    </div>
+  );
+}
+
+export default AdminUserscreen;
+
+======= RegisterScreen ========
+
+import React, { useState } from 'react';
+import axios from "axios";
+
+function RegisterScreen() {
+
+
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const[cpassword ,setCpassword] = useState("");
+
+    async function register() {
+        if (password===cpassword) {
+         const user = {
+             email,
+             password,
+             cpassword,
+         }
+     try {
+         const result = (await axios.post("http://localhost:5000/api/users/register", user)).data;
+         console.log(result);
+         setEmail("");
+         setPassword("");
+         setCpassword("");
+         
+     } catch (error) {
+         console.log(error);
+     }
+     
+        }
+        else{
+         alert("Password not matched");
+        }
+     }
+ 
+
+
+    return (
+        <div>
+            <center><h1 className="rl">Register</h1></center>
+
+            <input type="email" placeholder="email" className="form"
+                value={email} onChange={(e) => { setEmail(e.target.value) }} /><br /><br />
+
+            <input type="text" placeholder="password" className="form"
+                value={password} onChange={(e) => { setPassword(e.target.value) }} /><br /><br />
+
+            <input type="text" placeholder="confirm password" className="form"
+                value={cpassword} onChange={(e) => { setCpassword(e.target.value) }} /><br /><br/>
+
+            <button className="rlb" onClick={register}>Register</button>
+
+            {}
+            
+
+        </div>
+    )
+}
+
+export default RegisterScreen;
+
+===== Update Screen =====
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+
+function UpdateUserScreen() {
+  const { id } = useParams();
+  const [email, setEmail] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/users/getUser/${id}`);
+      const { email, isAdmin } = response.data;
+      setEmail(email);
+      setIsAdmin(isAdmin);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleUpdate = async () => {
+    try {
+      const updatedUser = { email, isAdmin };
+      await axios.put(`http://localhost:5000/api/users/updateUser/${id}`, updatedUser);
+      console.log("User updated successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <div>
+      <h1>Update User</h1>
+      <label>Email:</label>
+      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <br />
+      <label>Is Admin:</label>
+      <input type="checkbox" checked={isAdmin} onChange={(e) => setIsAdmin(e.target.checked)} />
+      <br />
+      <button onClick={handleUpdate}>Update</button>
+    </div>
+  );
+}
+
+export default UpdateUserScreen;
+
+==== App ====
+
+import {BrowserRouter as Router ,Route,Routes} from "react-router-dom";
+import './App.css';
+import RegisterScreen from "./Screens/RegisterScreen";
+import Navbar from "./Components/Navbar";
+import AdminScreen from "./Screens/AdminScreen";
+import Edit from "./Screens/Edit"
+import UpdateUserScreen from "./Screens/UpdateUserScreen";
+
+function App() {
+  return (
+    <div className="App">
+      <Navbar/>
+      <Router>
+        <Routes>
+          <Route path="/register" exact element={<RegisterScreen/>}/>
+          <Route path="/admin" exact element={<AdminScreen/>}/>
+          <Route path="/update/:id" exact element={<UpdateUserScreen/>} />
+          <Route path="/edit" exact element={<Edit/>}/>
+        </Routes>
+      </Router>
+    </div>
+  );
+}
+
+export default App;
+
+===== models > user ====
+
+const mongoose = require('mongoose');
+
+const userSchema = mongoose.Schema({
+    email : {
+        type: String, required: true
+    },
+    password : {
+        type: String, required: true
+    },
+    isAdmin : {
+        type : Boolean , default: false
+    }
+} , {
+    timestamps : true,
+})
+const userModel = mongoose.model('users' , userSchema)
+
+module.exports = userModel;
+
+==== routes > userRoute =====
+
+const express = require("express");
+const router = express.Router();
+const User = require("../models/user");
+
+// Create a new user
+router.post("/register", async (req, res) => {
+  try {
+    const newUser = new User(req.body);
+    const user = await newUser.save();
+    res.send("User Registered Successfully");
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+});
+
+// Get all users
+router.get("/getAllUsers", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.send(users);
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+});
+
+// Update a user
+router.put("/updateUser/:id", async (req, res) => {
+  try {
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.send(updatedUser);
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+});
+
+router.get("/getUser/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    res.send(user);
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+});
+
+// Delete a user
+router.delete("/deleteUser/:id", async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    res.send("User deleted successfully");
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+});
+
+module.exports = router;
+
+======= db ========
+
+
+const mongoose = require('mongoose');
+const mongoURL = 'mongodb+srv://manoj:kumar@cluster0.ih09tiq.mongodb.net/Employee';
+
+mongoose.connect(mongoURL, { useUnifiedTopology: true, useNewUrlParser: true });
+
+const connection = mongoose.connection;
+
+connection.on('error', () => {
+  console.log('Mongo DB connection Failed');
+});
+connection.on('connected', () => {
+  console.log('Mongo DB connection Successful');
+});
+
+module.exports = mongoose;
+
+
+====== server =====
+
+
+const express = require('express');
+const app = express();
+var cors = require('cors')
+app.use(cors())
+
+const dbConfig = require('./db')
+// Login & Register
+const usersRoute = require('./routes/userRoute')
+
+
+app.use(express.json())
+
+app.use('/api/users', usersRoute);
+
+
+const port = process.env.PORT || 5000;
+
+app.listen(port,() => console.log('Node server started using nodemon'));
+
